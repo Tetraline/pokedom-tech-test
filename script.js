@@ -54,7 +54,6 @@ const renderPokemon = (pokemonArray) => {
   // ruining the global version. e.g. When we capitalize the first character
   // of every pokemons name.
   let pokemons = structuredClone(pokemonArray);
-  console.log(`rendering ${pokemonArray}`);
   // Clear any existing cards from the container
   cardContainer.innerHTML = "";
   // Populate the container with new cards for each pokemon
@@ -88,13 +87,20 @@ const handleFormSubmit = (event) => {
   renderPokemon([...new Set(results)]);
 };
 
+const clearFilter = () => {
+  renderPokemon(pokemonArray);
+  searchForm.reset();
+};
+
 // Global variables
 const cardContainer = document.querySelector(".card-container");
 const searchForm = document.querySelector(".search-form");
+const clearFilterButton = document.querySelector(".clear-filter-button");
 import pokemonArray from "./data/pokemon.js";
 
-// Setup search event listener
+// Setup event listeners
 searchForm.addEventListener("submit", handleFormSubmit);
+clearFilterButton.addEventListener("click", clearFilter);
 
 // As soon as the page loads, render the full list
 renderPokemon(pokemonArray);
