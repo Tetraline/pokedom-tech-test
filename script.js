@@ -76,6 +76,7 @@ const handleFormSubmit = (event) => {
   // lower case, we make the search case insensitive.
   const searchTerm = event.target[0].value.toLowerCase();
   const searchTermArray = searchTerm.split(" ");
+  searchTermArray.push(event.target[1].value.toLowerCase());
   let results = [];
   searchTermArray.forEach((term) => {
     results = results.concat(
