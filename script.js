@@ -1,5 +1,6 @@
 /**
  * A function that generates the text for a given pokemon's card.
+ * Will only use the first 1 or 2 types, a pokemon with more will have index 2 and over ignored.
  *
  * @param {pokemon} pokemon A pokemon object
  * @returns {string} The string to be put on that pokemon's card
@@ -22,11 +23,12 @@ const generateCardText = (pokemon) => {
  * A function that creates the div element for a given pokemon's card.
  *
  * @param {pokemon} pokemon A pokemon object
- * @returns {string} The card div element
+ * @returns {element} The card div element
  */
 const generateCardDiv = (pokemon) => {
   // Convert the first character of the name to upper case
   pokemon.name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+
   const div = document.createElement("div");
   div.classList.add("card");
 
@@ -46,7 +48,7 @@ const generateCardDiv = (pokemon) => {
 /**
  * A function that renders an array of pokemon onto the page.
  *
- * @param {pokemon} pokemonArray An array of pokemon
+ * @param {array} pokemonArray An array of pokemon
  * @returns {} Nothing
  */
 const renderPokemon = (pokemonArray) => {
@@ -82,8 +84,7 @@ const handleFormSubmit = (event) => {
       )
     );
   });
-  // [... new Set(array)] removes duplicates
-  // since values in Set objects may only appear once
+  // Remove duplicates by using the Set class
   renderPokemon([...new Set(results)]);
 };
 
